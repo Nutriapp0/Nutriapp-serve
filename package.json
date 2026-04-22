@@ -1,0 +1,45 @@
+{
+  "name": "nutriapp-serve",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd /Users/juanv/University/Nutriapp/Nutriapp-serve && nodemon src/index.js",
+    "start": "node src/index.js",
+    "db:push": "npx prisma db push",
+    "db:generate": "npx prisma generate",
+    "db:studio": "npx prisma studio",
+    "import-excel": "node scripts/import-excel.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nutriapp0/Nutriapp-serve.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nutriapp0/Nutriapp-serve/issues"
+  },
+  "homepage": "https://github.com/Nutriapp0/Nutriapp-serve#readme",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.7.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
+    "openai": "^6.34.0",
+    "pg": "^8.20.0",
+    "prisma": "^7.7.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "nodemon": "^3.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}

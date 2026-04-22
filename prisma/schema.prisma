@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                  String   @id @default(cuid())
+  email               String   @unique
+  codigoUniversitario String   @unique
+  nombre              String
+  passwordHash        String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  sessions    AuthSession[]
+  consent     UserConsent?
+  assessments UserAssessment[]
+}
+
+model AuthSession {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserConsent {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  acceptedAt DateTime @default(now())
+  ipAddress  String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Assessment {
+  id                           String  @id @default(cuid())
+  Gender                       String
+  Age                          Float
+  Height                       Float
+  Weight                       Float
+  family_history_with_overweight String
+  FAVC                         String
+  FCVC                         Float
+  NCP                          Float
+  CAEC                         String
+  SMOKE                        String
+  CH2O                         Float
+  SCC                          String
+  FAF                          Float
+  TUE                          Float
+  CALC                         String
+  MTRANS                       String
+  imc                          Float?
+  imcClasificacion             String?
+  NObeyesdad                   String?
+  diagnostico                  String?
+  nivelRiesgo                  String?
+  registrosSimilares           Int?
+  createdAt                    DateTime @default(now())
+
+  userAssessment UserAssessment?
+}
+
+model UserAssessment {
+  id           String   @id @default(cuid())
+  userId       String
+  assessmentId String   @unique
+  createdAt    DateTime @default(now())
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assessment Assessment @relation(fields: [assessmentId], references: [id], onDelete: Cascade)
+}
+
+model AnthropometricData {
+  id                             Int    @id @default(autoincrement())
+  Gender                         String
+  Age                            Float
+  Height                         Float
+  Weight                         Float
+  family_history_with_overweight String
+  FAVC                           String
+  FCVC                           Float
+  NCP                            Float
+  CAEC                           String
+  SMOKE                          String
+  CH2O                           Float
+  SCC                            String
+  FAF                            Float
+  TUE                            Float
+  CALC                           String
+  MTRANS                         String
+  NObeyesdad                     String
+}
