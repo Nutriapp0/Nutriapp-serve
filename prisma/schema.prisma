@@ -1,3 +1,4 @@
+// Schema version: 2 - codigoUniversitario optional
 generator client {
   provider = "prisma-client-js"
 }
