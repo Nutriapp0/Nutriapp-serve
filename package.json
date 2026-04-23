@@ -20,7 +20,7 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24.0.0"
   },
   "bugs": {
     "url": "https://github.com/Nutriapp0/Nutriapp-serve/issues"
