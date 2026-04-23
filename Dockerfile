@@ -16,6 +16,4 @@ RUN npx prisma generate
 # Copiar el resto del código
 COPY . .
 
-EXPOSE 3001
-
 CMD ["node", "src/index.js"]
