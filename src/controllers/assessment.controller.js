@@ -40,10 +40,7 @@ const createAssessment = async (req, res) => {
 
     // Buscar registros similares del Excel para contexto
     const similares = await prisma.anthropometricData.findMany({
-      where: {
-        Gender,
-        NObeyesdad: { not: null }
-      },
+      where: { Gender },
       take: 5,
       orderBy: { id: 'asc' }
     })
