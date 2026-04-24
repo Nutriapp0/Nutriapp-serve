@@ -8,8 +8,20 @@ const assessmentRoutes = require('./routes/assessment.routes')
 
 const app = express()
 
+const allowedOrigins = [
+  process.env.FRONTEND_URL || 'http://localhost:3000',
+  'http://localhost:3000',
+  /^https:\/\/.*\.vercel\.app$/,
+]
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true)
+    const allowed = allowedOrigins.some(o =>
+      typeof o === 'string' ? o === origin : o.test(origin)
+    )
+    callback(null, allowed)
+  },
   credentials: true
 }))
 
