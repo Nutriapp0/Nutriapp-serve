@@ -10,7 +10,7 @@ COPY prisma.config.ts ./
 # Instalar dependencias (ignorar engine check ya que usamos Node exacto)
 RUN npm ci --engine-strict=false
 
-# Generar Prisma client
+# Generar Prisma client (schema v2: codigoUniversitario opcional)
 RUN npx prisma generate
 
 # Copiar el resto del código
